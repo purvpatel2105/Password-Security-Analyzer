@@ -1,0 +1,294 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Password Security Analyzer</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <!-- NAVBAR -->
+    <header class="navbar">
+        <div class="nav-container">
+            <div class="nav-brand">
+                <span class="nav-icon" aria-hidden="true">🛡️</span>
+                <span class="nav-title">Password Security Analyzer</span>
+            </div>
+            <nav class="nav-links" aria-label="Main Navigation">
+                <a href="#analyzer">Analyzer</a>
+                <a href="#checks">Security Checks</a>
+                <a href="#generator">Generator</a>
+                <a href="#about">About</a>
+            </nav>
+        </div>
+    </header>
+
+    <main>
+        <!-- HERO SECTION -->
+        <section class="hero-section">
+            <div class="container">
+                <div class="hero-badge">CYBERSECURITY TOOL</div>
+                <h1>Password Security Analyzer</h1>
+                <p class="hero-subtitle">Analyze your password strength, detect common patterns, and understand how secure your password really is.</p>
+                <div class="privacy-message" role="note">
+                    <span aria-hidden="true">🔒</span> Your password is analyzed locally and is never uploaded.
+                </div>
+                <div class="hero-actions">
+                    <a href="#analyzer" class="btn btn-primary" id="analyzeBtnHero">Analyze Password</a>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASSWORD ANALYZER -->
+        <section id="analyzer" class="analyzer-section">
+            <div class="container">
+                <h2>Check Your Password</h2>
+                <div class="analyzer-card">
+                    <div class="input-group">
+                        <label for="passwordInput">Enter Password</label>
+                        <div class="password-input-wrapper">
+                            <input type="password" id="passwordInput" placeholder="Enter your password" aria-label="Enter your password">
+                            <button type="button" id="togglePassword" aria-label="Toggle password visibility">👁️</button>
+                        </div>
+                    </div>
+
+                    <div class="strength-indicator-group">
+                        <div class="strength-bar-wrapper" aria-hidden="true">
+                            <div id="strengthBar" class="strength-bar"></div>
+                        </div>
+                        <div class="strength-meta">
+                            <span>Strength: <strong id="strengthText">Not analyzed</strong></span>
+                            <span>Score: <strong id="scoreText">0/100</strong></span>
+                        </div>
+                    </div>
+
+                    <div class="analyzer-actions">
+                        <button type="button" id="analyzeBtn" class="btn btn-primary">Analyze Password</button>
+                        <button type="button" id="clearBtn" class="btn btn-secondary">Clear</button>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY SCORE SECTION -->
+        <section class="score-section">
+            <div class="container">
+                <h2>Security Score</h2>
+                <div class="score-card">
+                    <div id="securityScore" class="large-score" aria-live="polite">0 / 100</div>
+                    <div class="progress-bar-wrapper" aria-hidden="true">
+                        <div id="scoreProgress" class="progress-bar"></div>
+                    </div>
+                    <div id="securityStatus" class="security-status">Not Checked</div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY CHECKS -->
+        <section id="checks" class="checks-section">
+            <div class="container">
+                <h2>Security Checks</h2>
+                <div class="checks-grid">
+                    <!-- Password Length -->
+                    <div class="check-card" id="lengthCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Password Length</h3>
+                            <p>Checks if the password meets recommended length requirements.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Uppercase Letter -->
+                    <div class="check-card" id="uppercaseCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Uppercase Letter</h3>
+                            <p>Verifies the inclusion of uppercase alphabetical characters.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Lowercase Letter -->
+                    <div class="check-card" id="lowercaseCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Lowercase Letter</h3>
+                            <p>Verifies the inclusion of lowercase alphabetical characters.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Number -->
+                    <div class="check-card" id="numberCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Number</h3>
+                            <p>Verifies the inclusion of numeric digits.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Special Character -->
+                    <div class="check-card" id="specialCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Special Character</h3>
+                            <p>Verifies the inclusion of symbols and special characters.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Common Password -->
+                    <div class="check-card" id="commonCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Common Password</h3>
+                            <p>Checks against a local dataset of frequently breached passwords.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Repeated Characters -->
+                    <div class="check-card" id="repeatCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Repeated Characters</h3>
+                            <p>Detects excessive repetition of identical characters.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+
+                    <!-- Predictable Sequence -->
+                    <div class="check-card" id="sequenceCheck">
+                        <div class="check-icon" aria-hidden="true">⚪</div>
+                        <div class="check-content">
+                            <h3>Predictable Sequence</h3>
+                            <p>Identifies keyboard patterns and sequential digits or letters.</p>
+                            <div class="check-result">Not Checked</div>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PASSWORD ANALYSIS DETAILS -->
+        <section class="details-section">
+            <div class="container">
+                <h2>Password Analysis Details</h2>
+                <div class="details-grid">
+                    <div class="detail-card">
+                        <h3>Password Length</h3>
+                        <div id="passwordLength" class="detail-value">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Character Set</h3>
+                        <div id="characterSet" class="detail-value">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Entropy</h3>
+                        <div id="entropyValue" class="detail-value">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Estimated Crack Time</h3>
+                        <div id="crackTime" class="detail-value">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Common Password Status</h3>
+                        <div id="commonPasswordStatus" class="detail-value">--</div>
+                    </div>
+                    <div class="detail-card">
+                        <h3>Pattern Detection</h3>
+                        <div id="patternStatus" class="detail-value">--</div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- SECURITY RECOMMENDATIONS -->
+        <section class="recommendations-section">
+            <div class="container">
+                <h2>Security Recommendations</h2>
+                <div id="recommendations" class="recommendations-container" aria-live="polite">
+                    Recommendations will appear after analysis.
+                </div>
+            </div>
+        </section>
+
+        <!-- STRONG PASSWORD GENERATOR -->
+        <section id="generator" class="generator-section">
+            <div class="container">
+                <h2>Strong Password Generator</h2>
+                <p class="generator-description">Generate a random password using secure character combinations.</p>
+                
+                <div class="generator-card">
+                    <div class="generator-controls">
+                        <div class="control-group">
+                            <label for="generatorLength">Password Length: <span id="lengthDisplay">16</span></label>
+                            <input type="range" id="generatorLength" min="8" max="64" value="16">
+                        </div>
+
+                        <fieldset class="checkbox-group">
+                            <legend>Character Options</legend>
+                            <label><input type="checkbox" id="useUppercase" checked> Uppercase (A-Z)</label>
+                            <label><input type="checkbox" id="useLowercase" checked> Lowercase (a-z)</label>
+                            <label><input type="checkbox" id="useNumbers" checked> Numbers (0-9)</label>
+                            <label><input type="checkbox" id="useSpecial" checked> Special Characters (!@#$)</label>
+                        </fieldset>
+                    </div>
+
+                    <div class="generator-output-group">
+                        <input type="text" id="generatedPassword" readonly placeholder="Generated password will appear here" aria-label="Generated password">
+                        <div class="generator-actions">
+                            <button type="button" id="generateBtn" class="btn btn-primary">Generate Password</button>
+                            <button type="button" id="copyPasswordBtn" class="btn btn-secondary">Copy Password</button>
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </section>
+
+        <!-- PRIVACY SECTION -->
+        <section class="privacy-section">
+            <div class="container">
+                <h2>Your Privacy Matters</h2>
+                <ul class="privacy-list">
+                    <li>Passwords are analyzed locally.</li>
+                    <li>Passwords are never uploaded.</li>
+                    <li>Passwords are never stored.</li>
+                    <li>Common-password detection uses a local dataset.</li>
+                    <li>This project is educational.</li>
+                </ul>
+            </div>
+        </section>
+
+        <!-- ABOUT SECTION -->
+        <section id="about" class="about-section">
+            <div class="container">
+                <h2>About This Project</h2>
+                <p>This is an educational cybersecurity project demonstrating:</p>
+                <ul class="about-list">
+                    <li>Password strength analysis</li>
+                    <li>Common password detection</li>
+                    <li>Pattern detection</li>
+                    <li>Entropy calculation</li>
+                    <li>Crack-time estimation</li>
+                    <li>Password security awareness</li>
+                </ul>
+                <p class="tech-stack"><strong>Technology:</strong> HTML, CSS, JavaScript</p>
+            </div>
+        </section>
+    </main>
+
+    <!-- FOOTER -->
+    <footer class="footer">
+        <div class="container">
+            <p class="footer-title">Password Security Analyzer</p>
+            <p class="footer-subtitle">Cybersecurity Education Project</p>
+            <p class="footer-copyright">© 2026 Password Security Analyzer</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+</body>
+</html>
